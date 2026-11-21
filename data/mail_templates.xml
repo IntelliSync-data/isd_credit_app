@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="mail_template_credit_low" model="mail.template">
+        <field name="name">Credit: running low</field>
+        <field name="model_id" ref="model_isd_credit_wallet"/>
+        <field name="subject">Credit is running low: {{ object.balance }} left</field>
+        <field name="email_from">{{ (user.company_id.email_formatted or user.email_formatted) }}</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+<div style="font-family: Arial, sans-serif; font-size: 14px;">
+    <p>Hello,</p>
+    <p><t t-out="object.display_label or ''"/> has <strong><t t-out="object.balance"/></strong> credits left.</p>
+    <p>Actions that cost credit stop when it runs out. Please top up soon.</p>
+</div>
+        </field>
+    </record>
+    <record id="mail_template_credit_empty" model="mail.template">
+        <field name="name">Credit: ran out</field>
+        <field name="model_id" ref="model_isd_credit_wallet"/>
+        <field name="subject">Credit has run out</field>
+        <field name="email_from">{{ (user.company_id.email_formatted or user.email_formatted) }}</field>
+        <field name="auto_delete" eval="True"/>
+        <field name="body_html" type="html">
+<div style="font-family: Arial, sans-serif; font-size: 14px;">
+    <p>Hello,</p>
+    <p><t t-out="object.display_label or ''"/> has run out of credit.</p>
+    <p>Actions that cost credit are blocked until it is topped up.</p>
+</div>
+        </field>
+    </record>
+</odoo>

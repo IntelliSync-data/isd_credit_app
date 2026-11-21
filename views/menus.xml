@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_root" name="Credit" sequence="90" web_icon="isd_credit_app,static/description/icon.png"
+              groups="isd_credit_app.group_credit_user"/>
+
+    <menuitem id="menu_overview" name="Overview" parent="menu_root" sequence="10" action="action_overview"
+              groups="isd_credit_app.group_credit_manager"/>
+    <menuitem id="menu_usage" name="Usage" parent="menu_root" sequence="20" action="action_ledger"
+              groups="isd_credit_app.group_credit_manager"/>
+    <menuitem id="menu_my_usage" name="My Usage" parent="menu_root" sequence="25" action="action_my_usage"/>
+    <menuitem id="menu_price_list" name="Price List" parent="menu_root" sequence="30" action="action_price_list"/>
+    <menuitem id="menu_topup" name="Top-ups" parent="menu_root" sequence="40" action="action_topup"
+              groups="isd_credit_app.group_credit_manager"/>
+    <menuitem id="menu_limit" name="User Limits" parent="menu_root" sequence="50" action="action_limit"
+              groups="isd_credit_app.group_credit_manager"/>
+
+    <menuitem id="menu_config" name="Configuration" parent="menu_root" sequence="100"
+              groups="isd_credit_app.group_credit_vendor"/>
+    <menuitem id="menu_rule" name="Prices" parent="menu_config" sequence="10" action="action_rule"/>
+    <menuitem id="menu_package" name="Packages" parent="menu_config" sequence="20" action="action_package"/>
+    <menuitem id="menu_wallet" name="Wallets" parent="menu_config" sequence="30" action="action_wallet"/>
+    <menuitem id="menu_statement" name="Monthly Statement" parent="menu_config" sequence="40"
+              action="action_ledger_statement"/>
+    <menuitem id="menu_settings" name="Settings" parent="menu_config" sequence="90" action="action_settings"/>
+</odoo>

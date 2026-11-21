@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wallet_user,wallet user,model_isd_credit_wallet,group_credit_user,1,0,0,0
+access_wallet_vendor,wallet vendor,model_isd_credit_wallet,group_credit_vendor,1,1,1,0
+access_rule_user,rule user,model_isd_credit_rule,group_credit_user,1,0,0,0
+access_rule_vendor,rule vendor,model_isd_credit_rule,group_credit_vendor,1,1,1,1
+access_ledger_user,ledger user,model_isd_credit_ledger,group_credit_user,1,0,0,0
+access_limit_user,limit user,model_isd_credit_limit,group_credit_user,1,0,0,0
+access_limit_manager,limit manager,model_isd_credit_limit,group_credit_manager,1,1,1,1
+access_package_user,package user,model_isd_credit_package,group_credit_user,1,0,0,0
+access_package_vendor,package vendor,model_isd_credit_package,group_credit_vendor,1,1,1,1
+access_topup_manager,topup manager,model_isd_credit_topup,group_credit_manager,1,1,1,0
+access_topup_vendor,topup vendor,model_isd_credit_topup,group_credit_vendor,1,1,1,1
+access_adjust_wizard_vendor,adjust wizard vendor,model_isd_credit_adjust_wizard,group_credit_vendor,1,1,1,1

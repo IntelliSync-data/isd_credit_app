@@ -1,0 +1,1835 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* isd_credit_app
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-21 05:46+0000\n"
+"PO-Revision-Date: 2026-11-21 05:46+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/rule.py:0
+msgid "\"%s\": choose the model."
+msgstr "\"%s\": hãy chọn model."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/rule.py:0
+msgid "\"%s\": choose the report."
+msgstr "\"%s\": hãy chọn báo cáo."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/rule.py:0
+msgid "\"%s\": choose the server action."
+msgstr "\"%s\": hãy chọn server action."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/rule.py:0
+msgid "\"%s\": enter the action code."
+msgstr "\"%s\": hãy nhập mã hành động."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/rule.py:0
+msgid "\"%s\": enter the button."
+msgstr "\"%s\": hãy nhập tên nút."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/rule.py:0
+msgid "\"%s\": the filter is not valid."
+msgstr "\"%s\": điều kiện lọc không hợp lệ."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "%(credits)s credits, %(amount)s %(currency)s in cash"
+msgstr "%(credits)s credit, %(amount)s %(currency)s tiền mặt"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/limit.py:0
+msgid "%(who)s: %(max)s credits per %(period)s"
+msgstr "%(who)s: %(max)s credit mỗi %(period)s"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/limit.py:0
+msgid "%s: no charged actions"
+msgstr "%s: không được dùng thao tác tính credit"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_rule__credits
+msgid "0 tracks the action without charging for it"
+msgstr "0: chỉ theo dõi, không tính credit"
+
+#. module: isd_credit_app
+#: model:mail.template,body_html:isd_credit_app.mail_template_credit_low
+msgid ""
+"<div style=\"font-family: Arial, sans-serif; font-size: 14px;\">\n"
+"    <p>Hello,</p>\n"
+"    <p><t t-out=\"object.display_label or ''\"/> has <strong><t t-out=\"object.balance\"/></strong> credits left.</p>\n"
+"    <p>Actions that cost credit stop when it runs out. Please top up soon.</p>\n"
+"</div>\n"
+"        "
+msgstr ""
+"<div style=\"font-family: Arial, sans-serif; font-size: 14px;\">\n"
+"    <p>Xin chào,</p>\n"
+"    <p><t t-out=\"object.display_label or ''\"/> còn <strong><t t-out=\"object.balance\"/></strong> credit.</p>\n"
+"    <p>Khi hết credit, các thao tác có tính credit sẽ bị chặn. Vui lòng nạp thêm sớm.</p>\n"
+"</div>\n"
+"        "
+
+#. module: isd_credit_app
+#: model:mail.template,body_html:isd_credit_app.mail_template_credit_empty
+msgid ""
+"<div style=\"font-family: Arial, sans-serif; font-size: 14px;\">\n"
+"    <p>Hello,</p>\n"
+"    <p><t t-out=\"object.display_label or ''\"/> has run out of credit.</p>\n"
+"    <p>Actions that cost credit are blocked until it is topped up.</p>\n"
+"</div>\n"
+"        "
+msgstr ""
+"<div style=\"font-family: Arial, sans-serif; font-size: 14px;\">\n"
+"    <p>Xin chào,</p>\n"
+"    <p><t t-out=\"object.display_label or ''\"/> đã hết credit.</p>\n"
+"    <p>Các thao tác có tính credit bị chặn cho đến khi được nạp thêm.</p>\n"
+"</div>\n"
+"        "
+
+#. module: isd_credit_app
+#: model:ir.model.constraint,message:isd_credit_app.constraint_isd_credit_wallet_company_unique
+msgid "A company has one wallet."
+msgstr "Mỗi công ty chỉ có một ví."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/limit.py:0
+msgid "A limit is for one employee or one group."
+msgstr "Mỗi giới hạn áp dụng cho một nhân viên hoặc một nhóm."
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_form
+msgid "A note for ISD"
+msgstr "Ghi chú cho ISD"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_form
+msgid "A note shown on the price list"
+msgstr "Ghi chú hiện trên bảng giá"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/package.py:0
+msgid "A package needs a positive number of credits and a price."
+msgstr "Gói nạp cần số credit lớn hơn 0 và có giá."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/rule.py:0
+msgid "A price cannot be negative."
+msgstr "Giá không được âm."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "A top-up that was approved, rejected or cancelled cannot change."
+msgstr "Yêu cầu nạp đã duyệt, bị từ chối hoặc đã huỷ thì không sửa được."
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_search
+msgid "Action"
+msgstr "Thao tác"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__action_code
+msgid "Action Code"
+msgstr "Mã hành động"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__message_needaction
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__message_needaction
+msgid "Action Needed"
+msgstr "Cần xử lý"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__active
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__active
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__active
+msgid "Active"
+msgstr "Đang áp dụng"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__activity_ids
+msgid "Activities"
+msgstr "Hoạt động"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Trang trí ngoại lệ hoạt động"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__activity_state
+msgid "Activity State"
+msgstr "Trạng thái hoạt động"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Biểu tượng loại hoạt động"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_wallet__reset_mode__rollover
+msgid "Add the allowance, up to a cap"
+msgstr "Cộng dồn, không vượt trần"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_form
+msgid "Add these credits to the wallet?"
+msgstr "Cộng số credit này vào ví?"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_search
+msgid "Added"
+msgstr "Cộng vào"
+
+#. module: isd_credit_app
+#: model:ir.model,name:isd_credit_app.model_isd_credit_adjust_wizard
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_adjust_wizard_form
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_wallet_form
+msgid "Adjust Credit"
+msgstr "Điều chỉnh credit"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_ledger__kind__adjust
+msgid "Adjustment"
+msgstr "Điều chỉnh"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/wizard/adjust_wizard.py:0
+msgid "Adjustment: %s"
+msgstr "Điều chỉnh: %s"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__allowed_model_ids
+msgid "Allowed Model"
+msgstr "Model được chọn"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__allowed_module_ids
+msgid "Allowed Module"
+msgstr "Module được chọn"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__allowed_report_ids
+msgid "Allowed Report"
+msgstr "Báo cáo được chọn"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__allowed_server_action_ids
+msgid "Allowed Server Action"
+msgstr "Server action được chọn"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__amount
+msgid "Amount to Pay"
+msgstr "Số tiền phải trả"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "An approved top-up cannot be deleted."
+msgstr "Không xoá được yêu cầu nạp đã duyệt."
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_adjust_wizard_form
+msgid "Apply"
+msgstr "Áp dụng"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_wallet_form
+msgid "Apply Plan Now"
+msgstr "Áp dụng gói ngay"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_form
+msgid "Approve"
+msgstr "Duyệt"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Approve top-up %s"
+msgstr "Duyệt yêu cầu nạp %s"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_topup__state__approved
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_search
+msgid "Approved"
+msgstr "Đã duyệt"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_limit_search
+msgid "Archived"
+msgstr "Đã lưu trữ"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__message_attachment_count
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__message_attachment_count
+msgid "Attachment Count"
+msgstr "Số tệp đính kèm"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__available_buttons
+msgid "Available Buttons"
+msgstr "Các nút có sẵn"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_form
+msgid "Back to Draft"
+msgstr "Về nháp"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_wallet_form
+msgid "Balance"
+msgstr "Số dư"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__balance_after
+msgid "Balance After"
+msgstr "Số dư sau"
+
+#. module: isd_credit_app
+#: model:ir.model,name:isd_credit_app.model_base
+msgid "Base"
+msgstr "Cơ sở"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__button_name
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_rule__operation__button
+msgid "Button"
+msgstr "Bấm nút"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_form
+msgid "Buttons on its views"
+msgstr "Các nút trên giao diện"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_adjust_wizard_form
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_form
+msgid "Cancel"
+msgstr "Huỷ"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_topup__state__cancelled
+msgid "Cancelled"
+msgstr "Đã huỷ"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__rollover_cap
+msgid "Cap"
+msgstr "Trần"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_topup__payment_method__cash
+msgid "Cash"
+msgstr "Tiền mặt"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid "Change it before any credit is used"
+msgstr "Hãy đổi trước khi bắt đầu dùng credit"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_rule__domain
+msgid "Charge only records that match this filter"
+msgstr "Chỉ tính các bản ghi thoả điều kiện này"
+
+#. module: isd_credit_app
+#: model_terms:ir.actions.act_window,help:isd_credit_app.action_topup
+msgid ""
+"Choose a package or a number of credits, then send the request. Credit is "
+"added once ISD approves it."
+msgstr "Chọn gói hoặc số credit rồi gửi yêu cầu. Credit được cộng khi ISD duyệt."
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "Close"
+msgstr "Đóng"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__company_id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__company_id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__company_id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__company_id
+msgid "Company"
+msgstr "Công ty"
+
+#. module: isd_credit_app
+#: model:ir.model,name:isd_credit_app.model_res_config_settings
+msgid "Config Settings"
+msgstr "Cài đặt cấu hình"
+
+#. module: isd_credit_app
+#: model:ir.ui.menu,name:isd_credit_app.menu_config
+msgid "Configuration"
+msgstr "Cấu hình"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__contract_end
+msgid "Contract Ends"
+msgstr "Hợp đồng hết hạn"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_rule__operation__create
+msgid "Create"
+msgstr "Tạo"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__create_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__create_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__create_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__create_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__create_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__create_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__create_uid
+msgid "Created by"
+msgstr "Tạo bởi"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__create_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__create_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__create_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__create_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__create_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__create_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__create_date
+msgid "Created on"
+msgstr "Tạo lúc"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "Creating this record costs"
+msgstr "Tạo bản ghi này tốn"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#. odoo-python
+#: code:addons/isd_credit_app/models/wallet.py:0
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+#: model:ir.actions.server,name:isd_credit_app.action_overview
+#: model:ir.module.category,name:isd_credit_app.module_category_credit
+#: model:ir.ui.menu,name:isd_credit_app.menu_root
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid "Credit"
+msgstr "Credit"
+
+#. module: isd_credit_app
+#: model:ir.model,name:isd_credit_app.model_isd_credit_ledger
+msgid "Credit Ledger"
+msgstr "Sổ credit"
+
+#. module: isd_credit_app
+#: model:ir.model,name:isd_credit_app.model_isd_credit_limit
+msgid "Credit Limit"
+msgstr "Giới hạn credit"
+
+#. module: isd_credit_app
+#: model:res.groups,name:isd_credit_app.group_credit_manager
+msgid "Credit Manager"
+msgstr "Quản lý credit"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_form
+msgid "Credit Movement"
+msgstr "Biến động credit"
+
+#. module: isd_credit_app
+#: model:ir.model,name:isd_credit_app.model_isd_credit_package
+msgid "Credit Package"
+msgstr "Gói nạp credit"
+
+#. module: isd_credit_app
+#: model:ir.model,name:isd_credit_app.model_isd_credit_rule
+msgid "Credit Price"
+msgstr "Giá credit"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_res_config_settings__isd_credit_timezone
+msgid "Credit Time Zone"
+msgstr "Múi giờ tính credit"
+
+#. module: isd_credit_app
+#: model:ir.model,name:isd_credit_app.model_isd_credit_topup
+msgid "Credit Top-up"
+msgstr "Nạp credit"
+
+#. module: isd_credit_app
+#: model:ir.actions.act_window,name:isd_credit_app.action_ledger
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_graph
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_list
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_pivot
+msgid "Credit Usage"
+msgstr "Sử dụng credit"
+
+#. module: isd_credit_app
+#: model:res.groups,name:isd_credit_app.group_credit_user
+msgid "Credit User"
+msgstr "Người dùng credit"
+
+#. module: isd_credit_app
+#: model:res.groups,name:isd_credit_app.group_credit_vendor
+msgid "Credit Vendor (ISD)"
+msgstr "Nhà cung cấp credit (ISD)"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/wallet.py:0
+#: model:ir.model,name:isd_credit_app.model_isd_credit_wallet
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_wallet_form
+msgid "Credit Wallet"
+msgstr "Ví credit"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/wallet.py:0
+msgid "Credit Wallet - %s"
+msgstr "Ví credit - %s"
+
+#. module: isd_credit_app
+#: model:ir.actions.act_window,name:isd_credit_app.action_wallet
+#: model:ir.model.fields,field_description:isd_credit_app.field_res_config_settings__isd_credit_wallet_scope
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid "Credit Wallets"
+msgstr "Ví credit"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/wallet.py:0
+msgid "Credit amounts cannot be negative."
+msgstr "Số credit không được âm."
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/js/credit_notice.js:0
+#: model:mail.template,subject:isd_credit_app.mail_template_credit_empty
+msgid "Credit has run out"
+msgstr "Đã hết credit"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/js/credit_notice.js:0
+msgid "Credit is running low"
+msgstr "Sắp hết credit"
+
+#. module: isd_credit_app
+#: model:mail.template,subject:isd_credit_app.mail_template_credit_low
+msgid "Credit is running low: {{ object.balance }} left"
+msgstr "Sắp hết credit: còn {{ object.balance }}"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/ledger.py:0
+msgid "Credit ledger lines cannot be changed. Add an adjustment instead."
+msgstr "Không sửa được dòng sổ credit. Hãy tạo dòng điều chỉnh."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/ledger.py:0
+msgid "Credit ledger lines cannot be deleted. Add an adjustment instead."
+msgstr "Không xoá được dòng sổ credit. Hãy tạo dòng điều chỉnh."
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "Credit left"
+msgstr "Credit còn lại"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__allowance
+msgid "Credit per Period"
+msgstr "Credit mỗi kỳ"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_ledger__used
+msgid "Credit used, as a positive number"
+msgstr "Số credit đã dùng (số dương)"
+
+#. module: isd_credit_app
+#: model:mail.template,name:isd_credit_app.mail_template_credit_empty
+msgid "Credit: ran out"
+msgstr "Credit: đã hết"
+
+#. module: isd_credit_app
+#: model:mail.template,name:isd_credit_app.mail_template_credit_low
+msgid "Credit: running low"
+msgstr "Credit: sắp hết"
+
+#. module: isd_credit_app
+#: model:ir.actions.server,name:isd_credit_app.cron_credit_periods_ir_actions_server
+msgid "Credit: start new periods"
+msgstr "Credit: bắt đầu kỳ mới"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__credits
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__credits
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__credits
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__credits
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__credits
+msgid "Credits"
+msgstr "Credit"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__max_credits
+msgid "Credits per Period"
+msgstr "Credit mỗi kỳ"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__currency_id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__currency_id
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_search
+msgid "Currency"
+msgstr "Tiền tệ"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__date
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_search
+msgid "Date"
+msgstr "Ngày"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_limit__period__day
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_wallet__period__day
+msgid "Day"
+msgstr "Ngày"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__approved_by_id
+msgid "Decided By"
+msgstr "Người quyết định"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__approved_on
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_search
+msgid "Decided On"
+msgstr "Quyết định lúc"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_rule__operation__unlink
+msgid "Delete"
+msgstr "Xoá"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__description
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__description
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__description
+msgid "Description"
+msgstr "Mô tả"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__display_label
+msgid "Display Label"
+msgstr "Nhãn hiển thị"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__display_name
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__display_name
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__display_name
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__display_name
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__display_name
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__display_name
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "Don't show again today"
+msgstr "Không hiện lại hôm nay"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_topup__state__draft
+msgid "Draft"
+msgstr "Nháp"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_limit__group_id
+msgid "Each member of the group gets this limit, unless they have their own"
+msgstr "Mỗi thành viên của nhóm có giới hạn này, trừ khi họ có giới hạn riêng"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_rule__operation__write
+msgid "Edit"
+msgstr "Sửa"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_rule__write_field_ids
+msgid ""
+"Edits count only when one of these fields changes. Empty: any edit counts."
+msgstr "Chỉ tính khi sửa một trong các trường này. Để trống: sửa gì cũng tính."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__user_id
+msgid "Employee"
+msgstr "Nhân viên"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__empty_notified
+msgid "Empty Notified"
+msgstr "Đã báo hết"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_ledger__company_id
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_wallet__company_id
+msgid "Empty: the one wallet of the whole database"
+msgstr "Để trống: ví chung của cả database"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Enter how many credits to buy."
+msgstr "Nhập số credit muốn mua."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/wizard/adjust_wizard.py:0
+msgid "Enter the number of credits to add or take away."
+msgstr "Nhập số credit cần cộng hoặc trừ."
+
+#. module: isd_credit_app
+#: model_terms:ir.actions.act_window,help:isd_credit_app.action_limit
+msgid ""
+"Everyone draws on the shared credit. Add a line to cap an employee or a group per day, week or month,\n"
+"                or to keep them from charged actions."
+msgstr ""
+"Mọi người dùng chung ví credit. Thêm một dòng để giới hạn nhân viên hoặc nhóm theo ngày, tuần, tháng,\n"
+"                hoặc cấm dùng các thao tác có tính credit."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_res_config_settings__isd_credit_warning_threshold
+msgid "Everyone sees a notice when the credit is at or below this"
+msgstr "Mọi người thấy thông báo khi credit còn bằng hoặc dưới mức này"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid ""
+"Everyone sees a notice, and managers get an email, at or below this credit"
+msgstr "Khi credit bằng hoặc dưới mức này, mọi người thấy thông báo và quản lý nhận email"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__message_follower_ids
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__message_follower_ids
+msgid "Followers"
+msgstr "Người theo dõi"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__message_partner_ids
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Người theo dõi (Đối tác)"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_topup__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Biểu tượng Font Awesome, ví dụ fa-tasks"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid "For a top-up of any number of credits, outside the packages"
+msgstr "Cho yêu cầu nạp số credit tuỳ ý, ngoài các gói"
+
+#. module: isd_credit_app
+#: model_terms:ir.actions.act_window,help:isd_credit_app.action_package
+msgid ""
+"For example 1,000 credits for 500,000 VND, or 1,000 credits for 20 USD."
+msgstr "Ví dụ 1.000 credit giá 500.000 VND, hoặc 1.000 credit giá 20 USD."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_res_config_settings__isd_credit_price_vnd
+msgid "For top-ups of any number of credits, outside the packages"
+msgstr "Cho yêu cầu nạp số credit tuỳ ý, ngoài các gói"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__group_id
+msgid "Group"
+msgstr "Nhóm"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__has_message
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__has_message
+msgid "Has Message"
+msgstr "Có tin nhắn"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "I used this month"
+msgstr "Tôi đã dùng tháng này"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__id
+msgid "ID"
+msgstr "ID"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__isd_only
+msgid "ISD Modules Only"
+msgstr "Chỉ module của ISD"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__activity_exception_icon
+msgid "Icon"
+msgstr "Biểu tượng"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_topup__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Biểu tượng cho hoạt động ngoại lệ."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_topup__message_needaction
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_wallet__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Nếu chọn, tin nhắn mới cần bạn chú ý."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_topup__message_has_error
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_wallet__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Nếu chọn, một số tin nhắn gửi bị lỗi."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__message_is_follower
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__message_is_follower
+msgid "Is Follower"
+msgstr "Là người theo dõi"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__is_vendor
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__is_vendor
+msgid "Is Vendor"
+msgstr "Là ISD"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_res_users__isd_credit_hidden_on
+msgid "Isd Credit Hidden On"
+msgstr "Ngày ẩn thông báo credit"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__kind
+msgid "Kind"
+msgstr "Loại"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__write_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__write_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__write_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__write_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__write_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__write_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__write_uid
+msgid "Last Updated by"
+msgstr "Cập nhật lần cuối bởi"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__write_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__write_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__write_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__write_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__write_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__write_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__write_date
+msgid "Last Updated on"
+msgstr "Cập nhật lần cuối lúc"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__ledger_count
+msgid "Ledger Count"
+msgstr "Số dòng sổ"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__low_notified
+msgid "Low Notified"
+msgstr "Đã báo sắp hết"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__message_has_error
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__message_has_error
+msgid "Message Delivery error"
+msgstr "Lỗi gửi tin nhắn"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__message_ids
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__message_ids
+msgid "Messages"
+msgstr "Tin nhắn"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__mode
+msgid "Mode"
+msgstr "Chế độ"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__res_model
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__model_id
+msgid "Model"
+msgstr "Model"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__model
+msgid "Model Name"
+msgstr "Tên model"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__module_id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__module_id
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_search
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_search
+msgid "Module"
+msgstr "Module"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_limit__period__month
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_wallet__period__month
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_search
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_search
+msgid "Month"
+msgstr "Tháng"
+
+#. module: isd_credit_app
+#: model:ir.actions.act_window,name:isd_credit_app.action_ledger_statement
+#: model:ir.ui.menu,name:isd_credit_app.menu_statement
+msgid "Monthly Statement"
+msgstr "Bản kê theo tháng"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_wallet_form
+msgid "Movements"
+msgstr "Biến động"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Hạn hoạt động của tôi"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+#: model:ir.actions.act_window,name:isd_credit_app.action_my_usage
+#: model:ir.ui.menu,name:isd_credit_app.menu_my_usage
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_search
+msgid "My Usage"
+msgstr "Tôi đã dùng"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "My limit ("
+msgstr "Hạn mức của tôi ("
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__name
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__name
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__name
+msgid "Name"
+msgstr "Tên"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_rule__operation__named
+msgid "Named Action"
+msgstr "Hành động có tên"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_form
+msgid "Needed to reject"
+msgstr "Bắt buộc khi từ chối"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_ledger__kind__reset
+msgid "New Period"
+msgstr "Kỳ mới"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/wallet.py:0
+msgid "New period: %s credits added"
+msgstr "Kỳ mới: cộng %s credit"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/wallet.py:0
+msgid "New period: no reset"
+msgstr "Kỳ mới: không reset"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/wallet.py:0
+msgid "New period: system credit reset to %s"
+msgstr "Kỳ mới: credit hệ thống về lại %s"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Hạn hoạt động kế tiếp"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__activity_summary
+msgid "Next Activity Summary"
+msgstr "Tóm tắt hoạt động kế tiếp"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__activity_type_id
+msgid "Next Activity Type"
+msgstr "Loại hoạt động kế tiếp"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__next_reset
+msgid "Next Period Starts"
+msgstr "Kỳ kế tiếp bắt đầu"
+
+#. module: isd_credit_app
+#: model_terms:ir.actions.act_window,help:isd_credit_app.action_rule
+msgid "No action costs credit yet"
+msgstr "Chưa có thao tác nào tính credit"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_limit__mode__forbid
+msgid "No charged actions"
+msgstr "Cấm thao tác tính credit"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_wallet__contract_end
+msgid "No new period is granted after this date"
+msgstr "Sau ngày này không cấp kỳ mới"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_wallet__reset_mode__none
+msgid "No reset"
+msgstr "Không reset"
+
+#. module: isd_credit_app
+#: model_terms:ir.actions.act_window,help:isd_credit_app.action_package
+msgid "No top-up package yet"
+msgstr "Chưa có gói nạp"
+
+#. module: isd_credit_app
+#: model_terms:ir.actions.act_window,help:isd_credit_app.action_topup
+msgid "No top-up request yet"
+msgstr "Chưa có yêu cầu nạp"
+
+#. module: isd_credit_app
+#: model_terms:ir.actions.act_window,help:isd_credit_app.action_limit
+msgid "Nobody is limited"
+msgstr "Chưa giới hạn ai"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/wallet.py:0
+msgid ""
+"Not enough credit: this needs %(need)s credits and the system has %(left)s "
+"left. Please ask your manager to top up."
+msgstr "Không đủ credit: thao tác này cần %(need)s credit, hệ thống còn %(left)s. Liên hệ quản lý để nạp thêm."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__note
+msgid "Note"
+msgstr "Ghi chú"
+
+#. module: isd_credit_app
+#: model_terms:ir.actions.act_window,help:isd_credit_app.action_price_list
+msgid "Nothing costs credit"
+msgstr "Chưa có thao tác nào tính credit"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid "Notice"
+msgstr "Thông báo"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__message_needaction_counter
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Số hành động"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__message_has_error_counter
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__message_has_error_counter
+msgid "Number of errors"
+msgstr "Số lỗi"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_topup__message_needaction_counter
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_wallet__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Số tin nhắn cần xử lý"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_topup__message_has_error_counter
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_wallet__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Số tin nhắn gửi lỗi"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_wallet__period__once
+msgid "Once (no period)"
+msgstr "Một lần (không có kỳ)"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__res_config_settings__isd_credit_wallet_scope__database
+msgid "One wallet for the whole database"
+msgstr "Một ví cho cả database"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__res_config_settings__isd_credit_wallet_scope__company
+msgid "One wallet per company"
+msgstr "Mỗi công ty một ví"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Only ISD can approve or reject a top-up."
+msgstr "Chỉ ISD được duyệt hoặc từ chối yêu cầu nạp."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/wallet.py:0
+msgid "Only ISD can change the credit plan or balance."
+msgstr "Chỉ ISD được đổi gói hoặc số dư credit."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__domain
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_form
+msgid "Only When"
+msgstr "Chỉ khi"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__write_field_ids
+msgid "Only When Editing"
+msgstr "Chỉ khi sửa"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Only a draft request can be sent."
+msgstr "Chỉ gửi được yêu cầu ở trạng thái nháp."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Only a request that is not decided yet can be cancelled."
+msgstr "Chỉ huỷ được yêu cầu chưa được quyết định."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Only a sent or cancelled request can go back to draft."
+msgstr "Chỉ yêu cầu đã gửi hoặc đã huỷ mới về nháp được."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Only a submitted request can be approved."
+msgstr "Chỉ duyệt được yêu cầu đã gửi."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Only a submitted request can be rejected."
+msgstr "Chỉ từ chối được yêu cầu đã gửi."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_rule__isd_only
+msgid "Only offer the modules made by IntelliSyncData"
+msgstr "Chỉ hiện các module do IntelliSyncData làm"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_list
+msgid "Open the record"
+msgstr "Mở bản ghi"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__operation
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__operation
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_search
+msgid "Operation"
+msgstr "Loại thao tác"
+
+#. module: isd_credit_app
+#: model:ir.ui.menu,name:isd_credit_app.menu_overview
+msgid "Overview"
+msgstr "Tổng quan"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__package_id
+msgid "Package"
+msgstr "Gói"
+
+#. module: isd_credit_app
+#: model:ir.actions.act_window,name:isd_credit_app.action_package
+#: model:ir.ui.menu,name:isd_credit_app.menu_package
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_package_list
+msgid "Packages"
+msgstr "Gói nạp"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__part
+msgid "Part"
+msgstr "Phần"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_form
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_search
+msgid "Paused"
+msgstr "Tạm tắt"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_form
+msgid "Payment"
+msgstr "Thanh toán"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__payment_method
+msgid "Payment Method"
+msgstr "Phương thức thanh toán"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__period
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__period
+msgid "Period"
+msgstr "Chu kỳ"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_res_config_settings__isd_credit_timezone
+msgid ""
+"Periods, limits and \"Don't show again today\" follow the customer's day in "
+"this zone"
+msgstr "Kỳ, giới hạn và \"Không hiện lại hôm nay\" tính theo ngày của khách ở múi giờ này"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid "Periods, limits and the daily notice follow this day"
+msgstr "Kỳ, giới hạn và thông báo hằng ngày tính theo múi giờ này"
+
+#. module: isd_credit_app
+#: model_terms:ir.actions.act_window,help:isd_credit_app.action_rule
+msgid "Pick a module, an action in it, and its price in credits."
+msgstr "Chọn module, thao tác trong module đó và giá bằng credit."
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_wallet_form
+msgid "Plan (from the contract)"
+msgstr "Gói (theo hợp đồng)"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__active_plan
+msgid "Plan Running"
+msgstr "Gói đang chạy"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_ledger__kind__grant
+msgid "Plan Started"
+msgstr "Bắt đầu gói"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/wallet.py:0
+msgid "Plan started: %s credits"
+msgstr "Bắt đầu gói: %s credit"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_adjust_wizard__credits
+msgid "Positive adds credit, negative takes it away"
+msgstr "Số dương cộng credit, số âm trừ credit"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_ledger__credits
+msgid "Positive: credit added. Negative: credit used."
+msgstr "Dương: credit cộng vào. Âm: credit đã dùng."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__rule_id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__price
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_form
+msgid "Price"
+msgstr "Giá"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+#: model:ir.actions.act_window,name:isd_credit_app.action_price_list
+#: model:ir.actions.act_window,name:isd_credit_app.action_rule
+#: model:ir.ui.menu,name:isd_credit_app.menu_price_list
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_list
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_list_readonly
+msgid "Price List"
+msgstr "Bảng giá"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid "Price per Credit"
+msgstr "Đơn giá mỗi credit"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_res_config_settings__isd_credit_price_usd
+msgid "Price per Credit (USD)"
+msgstr "Đơn giá mỗi credit (USD)"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_res_config_settings__isd_credit_price_vnd
+msgid "Price per Credit (VND)"
+msgstr "Đơn giá mỗi credit (VND)"
+
+#. module: isd_credit_app
+#: model:ir.ui.menu,name:isd_credit_app.menu_rule
+msgid "Prices"
+msgstr "Bảng giá"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_rule__operation__report
+msgid "Print Report"
+msgstr "In báo cáo"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "Purchased"
+msgstr "Đã nạp"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__topup_delta
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__topup_balance
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_adjust_wizard__part__topup
+msgid "Purchased Credit"
+msgstr "Credit đã nạp"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__qty
+msgid "Quantity"
+msgstr "Số lượng"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_wallet__period__quarter
+msgid "Quarter"
+msgstr "Quý"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__reason
+msgid "Reason"
+msgstr "Lý do"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__receipt
+msgid "Receipt"
+msgstr "Biên nhận"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__receipt_name
+msgid "Receipt Name"
+msgstr "Tên biên nhận"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__received_amount
+msgid "Received Amount"
+msgstr "Số tiền thực nhận"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__res_id
+msgid "Record"
+msgstr "Bản ghi"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__name
+msgid "Reference"
+msgstr "Mã"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_form
+msgid "Reject"
+msgstr "Từ chối"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__reject_reason
+msgid "Reject Reason"
+msgstr "Lý do từ chối"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_topup__state__rejected
+msgid "Rejected"
+msgstr "Bị từ chối"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__remaining
+msgid "Remaining"
+msgstr "Còn lại"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__report_id
+msgid "Report"
+msgstr "Báo cáo"
+
+#. module: isd_credit_app
+#: model:ir.model,name:isd_credit_app.model_ir_actions_report
+msgid "Report Action"
+msgstr "Báo cáo tác vụ"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_form
+msgid "Request"
+msgstr "Yêu cầu"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+#: model:ir.actions.act_window,name:isd_credit_app.action_topup_new
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_wallet_form
+msgid "Request Top-up"
+msgstr "Gửi yêu cầu nạp"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__requested_by_id
+msgid "Requested By"
+msgstr "Người yêu cầu"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_list
+msgid "Requested On"
+msgstr "Ngày yêu cầu"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__reset_mode
+msgid "Reset Mode"
+msgstr "Chế độ sang kỳ"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_wallet__reset_mode__reset
+msgid "Reset to the allowance"
+msgstr "Reset về đúng mức mỗi kỳ"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__activity_user_id
+msgid "Responsible User"
+msgstr "Người phụ trách"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "Saving changes to this record costs"
+msgstr "Lưu thay đổi bản ghi này tốn"
+
+#. module: isd_credit_app
+#: model:res.groups,comment:isd_credit_app.group_credit_manager
+msgid "Sees the balance and all usage, limits staff, and requests top-ups."
+msgstr "Xem số dư và toàn bộ lịch sử dùng, giới hạn nhân viên, gửi yêu cầu nạp."
+
+#. module: isd_credit_app
+#: model:res.groups,comment:isd_credit_app.group_credit_user
+msgid "Sees what each action costs, and their own usage."
+msgstr "Xem giá từng thao tác và credit mình đã dùng."
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_form
+msgid "Send Request"
+msgstr "Gửi yêu cầu"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__sequence
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__sequence
+msgid "Sequence"
+msgstr "Thứ tự"
+
+#. module: isd_credit_app
+#: model:ir.model,name:isd_credit_app.model_ir_actions_server
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__server_action_id
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_rule__operation__server_action
+msgid "Server Action"
+msgstr "Tác vụ phía máy chủ"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/wallet.py:0
+msgid "Set the credit per period first."
+msgstr "Hãy nhập số credit mỗi kỳ trước."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Set the request back to draft to change it."
+msgstr "Hãy đưa yêu cầu về nháp để sửa."
+
+#. module: isd_credit_app
+#: model:res.groups,comment:isd_credit_app.group_credit_vendor
+msgid ""
+"Sets plans, prices and packages, approves top-ups, adjusts credit. Its users"
+" are never charged."
+msgstr "Cấu hình gói, bảng giá, gói nạp; duyệt nạp; điều chỉnh credit. User nhóm này không bị tính credit."
+
+#. module: isd_credit_app
+#: model:ir.actions.act_window,name:isd_credit_app.action_settings
+#: model:ir.ui.menu,name:isd_credit_app.menu_settings
+msgid "Settings"
+msgstr "Thiết lập"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_adjust_wizard_form
+msgid "Shown on the ledger"
+msgstr "Hiện trên sổ credit"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_wallet_form
+msgid "Start Plan"
+msgstr "Bắt đầu gói"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_wallet_form
+msgid "Start a new period now with the current plan?"
+msgstr "Bắt đầu kỳ mới ngay với gói hiện tại?"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/wallet.py:0
+msgid "Start the plan first."
+msgstr "Hãy bắt đầu gói trước."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__state
+msgid "State"
+msgstr "Trạng thái"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_search
+msgid "Status"
+msgstr "Trạng thái"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_topup__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Trạng thái theo hoạt động\n"
+"Quá hạn: đã qua hạn\n"
+"Hôm nay: hạn là hôm nay\n"
+"Đã lên kế hoạch: hoạt động trong tương lai."
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_wallet_form
+msgid "Stop Plan"
+msgstr "Dừng gói"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_topup__state__submitted
+msgid "Submitted"
+msgstr "Đã gửi"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "System"
+msgstr "Hệ thống"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__system_delta
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__system_balance
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_adjust_wizard__part__system
+msgid "System Credit"
+msgstr "Credit hệ thống"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_wallet_form
+msgid ""
+"System credit is spent first, purchased credit never expires.\n"
+"                        A plan change applies from the next period, or now with \"Apply Plan Now\"."
+msgstr ""
+"Credit hệ thống được trừ trước, credit đã nạp không bao giờ hết hạn.\n"
+"                        Đổi gói có hiệu lực từ kỳ kế tiếp, hoặc ngay lập tức với \"Áp dụng gói ngay\"."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/wizard/adjust_wizard.py:0
+msgid "That would take this part below zero (it has %s)."
+msgstr "Phần này sẽ bị âm (hiện có %s)."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_rule__action_code
+msgid "The code a module charges with, e.g. ai_chatbot.ai_reply"
+msgstr "Mã mà module dùng để tính credit, ví dụ ai_chatbot.ai_reply"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_topup__company_id
+msgid ""
+"The company whose wallet receives the credit. Empty: the shared wallet."
+msgstr "Công ty có ví nhận credit. Để trống: ví chung."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/limit.py:0
+msgid "The limit cannot be negative."
+msgstr "Giới hạn không được âm."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_rule__button_name
+msgid "The method the button calls, e.g. action_confirm"
+msgstr "Hàm mà nút gọi, ví dụ action_confirm"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "The system has"
+msgstr "Hệ thống còn"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid ""
+"The system has run out of credit. Actions that cost credit are blocked."
+msgstr "Hệ thống đã hết credit. Các thao tác có tính credit đang bị chặn."
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid "Time Zone"
+msgstr "Múi giờ"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_search
+msgid "To Approve"
+msgstr "Chờ duyệt"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__topup_id
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_ledger__kind__topup
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_form
+msgid "Top-up"
+msgstr "Nạp credit"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Top-up %s"
+msgstr "Nạp credit %s"
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Top-up requested: %(credits)s credits for %(amount)s %(currency)s."
+msgstr "Yêu cầu nạp: %(credits)s credit, %(amount)s %(currency)s."
+
+#. module: isd_credit_app
+#: model:ir.actions.act_window,name:isd_credit_app.action_topup
+#: model:ir.ui.menu,name:isd_credit_app.menu_topup
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_list
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_pivot
+msgid "Top-ups"
+msgstr "Nạp credit"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_list
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_topup_list
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_wallet_list
+msgid "Total"
+msgstr "Tổng"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__balance
+msgid "Total Credit"
+msgstr "Tổng credit"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_search
+msgid "Type"
+msgstr "Loại"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_topup__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Loại hoạt động ngoại lệ của bản ghi."
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid "USD"
+msgstr "USD"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_limit__mode__limit
+msgid "Up to a number of credits"
+msgstr "Tối đa số credit"
+
+#. module: isd_credit_app
+#: model:ir.ui.menu,name:isd_credit_app.menu_usage
+msgid "Usage"
+msgstr "Lịch sử dùng"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__used
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_ledger__kind__consume
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_search
+msgid "Used"
+msgstr "Đã dùng"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__used
+msgid "Used This Period"
+msgstr "Đã dùng kỳ này"
+
+#. module: isd_credit_app
+#: model:ir.model,name:isd_credit_app.model_res_users
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__user_id
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_ledger_search
+msgid "User"
+msgstr "Người dùng"
+
+#. module: isd_credit_app
+#: model:ir.actions.act_window,name:isd_credit_app.action_limit
+#: model:ir.ui.menu,name:isd_credit_app.menu_limit
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_limit_list
+msgid "User Limits"
+msgstr "Giới hạn nhân viên"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid "VND"
+msgstr "VND"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__wallet_id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__wallet_id
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid "Wallet"
+msgstr "Ví"
+
+#. module: isd_credit_app
+#: model:ir.ui.menu,name:isd_credit_app.menu_wallet
+msgid "Wallets"
+msgstr "Ví"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_res_config_settings__isd_credit_warning_threshold
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
+msgid "Warn Below"
+msgstr "Cảnh báo khi còn"
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_limit__period__week
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_wallet__period__week
+msgid "Week"
+msgstr "Tuần"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_form
+msgid "What"
+msgstr "Thao tác"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_wallet__reset_mode
+msgid "What happens to unused system credit when a new period starts"
+msgstr "Credit hệ thống chưa dùng được xử lý thế nào khi sang kỳ mới"
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_wallet__rollover_cap
+msgid ""
+"With \"Add the allowance\", system credit never goes above this. 0: no cap."
+msgstr "Với \"Cộng dồn\", credit hệ thống không vượt mức này. 0: không có trần."
+
+#. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_limit__company_id
+msgid ""
+"With one wallet per company: the company the limit applies in. Empty: all."
+msgstr "Khi mỗi công ty một ví: công ty áp dụng giới hạn. Để trống: mọi công ty."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Write why the request is rejected first."
+msgstr "Hãy ghi lý do từ chối trước."
+
+#. module: isd_credit_app
+#: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_wallet__period__year
+msgid "Year"
+msgstr "Năm"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "You are not allowed to use charged actions."
+msgstr "Bạn không được dùng các thao tác có tính credit."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/limit.py:0
+msgid ""
+"You are not allowed to use charged actions. Please contact your manager."
+msgstr "Bạn không được dùng các thao tác có tính credit. Liên hệ quản lý."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/limit.py:0
+msgid ""
+"You have used %(used)s/%(max)s credits this %(period)s; this needs %(need)s "
+"more. Please contact your manager."
+msgstr "Bạn đã dùng %(used)s/%(max)s credit trong %(period)s này; thao tác cần thêm %(need)s. Liên hệ quản lý."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Your top-up %(name)s is approved: %(credits)s credits were added."
+msgstr "Yêu cầu nạp %(name)s đã được duyệt: đã cộng %(credits)s credit."
+
+#. module: isd_credit_app
+#. odoo-python
+#: code:addons/isd_credit_app/models/topup.py:0
+msgid "Your top-up %(name)s was rejected: %(reason)s"
+msgstr "Yêu cầu nạp %(name)s bị từ chối: %(reason)s"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid ""
+"credits left.\n"
+"                        Please ask your manager to top up."
+msgstr "credit. Hãy liên hệ quản lý để nạp thêm."
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "credits."
+msgstr "credit."
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_form
+msgid "e.g. Create a QR code"
+msgstr "ví dụ Tạo mã QR"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_form
+msgid "e.g. action_confirm"
+msgstr "ví dụ action_confirm"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_form
+msgid "e.g. ai_chatbot.ai_reply"
+msgstr "ví dụ ai_chatbot.ai_reply"

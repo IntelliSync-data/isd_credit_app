@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_rule_form" model="ir.ui.view">
+        <field name="name">isd.credit.rule.form</field>
+        <field name="model">isd.credit.rule</field>
+        <field name="arch" type="xml">
+            <form string="Price">
+                <sheet>
+                    <widget name="web_ribbon" title="Paused" bg_color="text-bg-warning" invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Create a QR code"/></h1>
+                    </div>
+                    <group>
+                        <group string="What">
+                            <field name="allowed_module_ids" invisible="1"/>
+                            <field name="allowed_model_ids" invisible="1"/>
+                            <field name="allowed_server_action_ids" invisible="1"/>
+                            <field name="allowed_report_ids" invisible="1"/>
+                            <field name="model" invisible="1"/>
+                            <field name="isd_only"/>
+                            <field name="module_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="operation"/>
+                            <field name="model_id" options="{'no_create': True}"
+                                   invisible="operation in ('server_action', 'report', 'named')"
+                                   required="operation in ('create', 'write', 'unlink', 'button')"/>
+                            <field name="write_field_ids" widget="many2many_tags" options="{'no_create': True}"
+                                   invisible="operation != 'write'"/>
+                            <field name="button_name" invisible="operation != 'button'"
+                                   required="operation == 'button'" placeholder="e.g. action_confirm"/>
+                            <field name="available_buttons" string="Buttons on its views"
+                                   invisible="operation != 'button' or not available_buttons"/>
+                            <field name="server_action_id" options="{'no_create': True}"
+                                   invisible="operation != 'server_action'" required="operation == 'server_action'"/>
+                            <field name="report_id" options="{'no_create': True}"
+                                   invisible="operation != 'report'" required="operation == 'report'"/>
+                            <field name="action_code" invisible="operation != 'named'" required="operation == 'named'"
+                                   placeholder="e.g. ai_chatbot.ai_reply"/>
+                        </group>
+                        <group string="Price">
+                            <field name="credits"/>
+                            <field name="sequence"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                    </group>
+                    <group string="Only When" invisible="not model or operation in ('named', 'server_action', 'report')">
+                        <field name="domain" widget="domain" options="{'model': 'model', 'in_dialog': True}" nolabel="1" colspan="2"/>
+                    </group>
+                    <field name="description" placeholder="A note shown on the price list"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_rule_list" model="ir.ui.view">
+        <field name="name">isd.credit.rule.list</field>
+        <field name="model">isd.credit.rule</field>
+        <field name="arch" type="xml">
+            <list string="Price List">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="module_id"/>
+                <field name="operation"/>
+                <field name="model_id" optional="show"/>
+                <field name="credits"/>
+                <field name="description" optional="hide"/>
+                <field name="active" widget="boolean_toggle" groups="isd_credit_app.group_credit_vendor"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- What staff and managers see: prices only, nothing to change -->
+    <record id="view_rule_list_readonly" model="ir.ui.view">
+        <field name="name">isd.credit.rule.list.readonly</field>
+        <field name="model">isd.credit.rule</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <list string="Price List" create="0" edit="0" delete="0" open_form_view="0">
+                <field name="name"/>
+                <field name="module_id"/>
+                <field name="operation"/>
+                <field name="model_id" optional="hide"/>
+                <field name="credits"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_rule_search" model="ir.ui.view">
+        <field name="name">isd.credit.rule.search</field>
+        <field name="model">isd.credit.rule</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="module_id"/>
+                <field name="model_id"/>
+                <filter name="inactive" string="Paused" domain="[('active', '=', False)]"/>
+                <group expand="0">
+                    <filter name="group_module" string="Module" context="{'group_by': 'module_id'}"/>
+                    <filter name="group_operation" string="Operation" context="{'group_by': 'operation'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_rule" model="ir.actions.act_window">
+        <field name="name">Price List</field>
+        <field name="res_model">isd.credit.rule</field>
+        <field name="path">credit-prices</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_module': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No action costs credit yet</p>
+            <p>Pick a module, an action in it, and its price in credits.</p>
+        </field>
+    </record>
+
+    <record id="action_price_list" model="ir.actions.act_window">
+        <field name="name">Price List</field>
+        <field name="res_model">isd.credit.rule</field>
+        <field name="path">credit-price-list</field>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_rule_list_readonly"/>
+        <field name="domain">[('credits', '>', 0)]</field>
+        <field name="context">{'search_default_group_module': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nothing costs credit</p>
+        </field>
+    </record>
+</odoo>

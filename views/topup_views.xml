@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_topup_form" model="ir.ui.view">
+        <field name="name">isd.credit.topup.form</field>
+        <field name="model">isd.credit.topup</field>
+        <field name="arch" type="xml">
+            <form string="Top-up">
+                <header>
+                    <button name="action_submit" type="object" string="Send Request" class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_approve" type="object" string="Approve" class="btn-primary"
+                            invisible="state != 'submitted' or not is_vendor"
+                            confirm="Add these credits to the wallet?"/>
+                    <button name="action_reject" type="object" string="Reject"
+                            invisible="state != 'submitted' or not is_vendor"/>
+                    <button name="action_draft" type="object" string="Back to Draft"
+                            invisible="state not in ('submitted', 'cancelled')"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state not in ('draft', 'submitted')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <field name="is_vendor" invisible="1"/>
+                    <group>
+                        <group string="Request">
+                            <field name="package_id" options="{'no_create': True}" readonly="state != 'draft'"/>
+                            <field name="credits" readonly="state != 'draft'"/>
+                            <field name="currency_id" options="{'no_create': True, 'no_open': True}"
+                                   readonly="state != 'draft'"/>
+                            <field name="amount" readonly="state != 'draft' or not is_vendor"/>
+                            <field name="payment_method" readonly="state != 'draft'"/>
+                            <field name="company_id" groups="base.group_multi_company" readonly="state != 'draft'"
+                                   options="{'no_create': True}"/>
+                        </group>
+                        <group string="Payment">
+                            <field name="requested_by_id"/>
+                            <field name="receipt" filename="receipt_name" readonly="state not in ('draft', 'submitted')"/>
+                            <field name="receipt_name" invisible="1"/>
+                            <field name="received_amount" readonly="not is_vendor or state != 'submitted'"
+                                   invisible="not is_vendor and state != 'approved'"/>
+                            <field name="approved_by_id" invisible="not approved_by_id"/>
+                            <field name="approved_on" invisible="not approved_on"/>
+                        </group>
+                    </group>
+                    <group invisible="state not in ('submitted', 'rejected') or (not is_vendor and state != 'rejected')">
+                        <field name="reject_reason" readonly="not is_vendor or state != 'submitted'"
+                               placeholder="Needed to reject"/>
+                    </group>
+                    <field name="note" placeholder="A note for ISD" readonly="state not in ('draft', 'submitted')"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_topup_list" model="ir.ui.view">
+        <field name="name">isd.credit.topup.list</field>
+        <field name="model">isd.credit.topup</field>
+        <field name="arch" type="xml">
+            <list string="Top-ups" decoration-info="state == 'submitted'" decoration-muted="state in ('rejected', 'cancelled')">
+                <field name="name"/>
+                <field name="create_date" string="Requested On"/>
+                <field name="requested_by_id" widget="many2one_avatar_user"/>
+                <field name="credits" sum="Total"/>
+                <field name="amount"/>
+                <field name="received_amount" optional="show"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="company_id" optional="hide" groups="base.group_multi_company"/>
+                <field name="state" widget="badge" decoration-info="state == 'submitted'"
+                       decoration-success="state == 'approved'" decoration-danger="state == 'rejected'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_topup_search" model="ir.ui.view">
+        <field name="name">isd.credit.topup.search</field>
+        <field name="model">isd.credit.topup</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="requested_by_id"/>
+                <filter name="to_approve" string="To Approve" domain="[('state', '=', 'submitted')]"/>
+                <filter name="approved" string="Approved" domain="[('state', '=', 'approved')]"/>
+                <separator/>
+                <filter name="approved_on" string="Decided On" date="approved_on"/>
+                <group expand="0">
+                    <filter name="group_currency" string="Currency" context="{'group_by': 'currency_id'}"/>
+                    <filter name="group_month" string="Month" context="{'group_by': 'approved_on:month'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_topup_pivot" model="ir.ui.view">
+        <field name="name">isd.credit.topup.pivot</field>
+        <field name="model">isd.credit.topup</field>
+        <field name="arch" type="xml">
+            <pivot string="Top-ups">
+                <field name="approved_on" interval="month" type="row"/>
+                <field name="currency_id" type="col"/>
+                <field name="credits" type="measure"/>
+                <field name="received_amount" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_topup" model="ir.actions.act_window">
+        <field name="name">Top-ups</field>
+        <field name="res_model">isd.credit.topup</field>
+        <field name="path">credit-topups</field>
+        <field name="view_mode">list,form,pivot</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No top-up request yet</p>
+            <p>Choose a package or a number of credits, then send the request. Credit is added once ISD approves it.</p>
+        </field>
+    </record>
+
+    <record id="action_topup_new" model="ir.actions.act_window">
+        <field name="name">Request Top-up</field>
+        <field name="res_model">isd.credit.topup</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+</odoo>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wallet_form" model="ir.ui.view">
+        <field name="name">isd.credit.wallet.form</field>
+        <field name="model">isd.credit.wallet</field>
+        <field name="arch" type="xml">
+            <form string="Credit Wallet" create="0" delete="0">
+                <header>
+                    <button name="action_start_plan" type="object" string="Start Plan" class="btn-primary"
+                            invisible="not is_vendor or active_plan"/>
+                    <button name="action_apply_now" type="object" string="Apply Plan Now"
+                            invisible="not is_vendor or not active_plan"
+                            confirm="Start a new period now with the current plan?"/>
+                    <button name="action_stop_plan" type="object" string="Stop Plan"
+                            invisible="not is_vendor or not active_plan"/>
+                    <button name="action_adjust" type="object" string="Adjust Credit" invisible="not is_vendor"/>
+                    <button name="%(isd_credit_app.action_topup_new)d" type="action" string="Request Top-up"
+                            invisible="is_vendor" groups="isd_credit_app.group_credit_manager"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_ledger" type="object" class="oe_stat_button" icon="fa-list">
+                            <field name="ledger_count" widget="statinfo" string="Movements"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="display_label"/></h1>
+                    </div>
+                    <group>
+                        <group string="Balance">
+                            <field name="balance" class="fs-4 fw-bold"/>
+                            <field name="system_balance"/>
+                            <field name="topup_balance"/>
+                            <field name="next_reset" invisible="not active_plan"/>
+                            <field name="company_id" invisible="not company_id" readonly="1"/>
+                        </group>
+                        <group string="Plan (from the contract)">
+                            <field name="is_vendor" invisible="1"/>
+                            <field name="active_plan"/>
+                            <field name="allowance" readonly="not is_vendor"/>
+                            <field name="period" readonly="not is_vendor"/>
+                            <field name="reset_mode" readonly="not is_vendor" invisible="period == 'once'"/>
+                            <field name="rollover_cap" readonly="not is_vendor" invisible="reset_mode != 'rollover'"/>
+                            <field name="contract_end" readonly="not is_vendor"/>
+                        </group>
+                    </group>
+                    <div class="text-muted" invisible="not is_vendor">
+                        System credit is spent first, purchased credit never expires.
+                        A plan change applies from the next period, or now with "Apply Plan Now".
+                    </div>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_wallet_list" model="ir.ui.view">
+        <field name="name">isd.credit.wallet.list</field>
+        <field name="model">isd.credit.wallet</field>
+        <field name="arch" type="xml">
+            <list create="0" delete="0">
+                <field name="display_label"/>
+                <field name="company_id"/>
+                <field name="system_balance" sum="Total"/>
+                <field name="topup_balance" sum="Total"/>
+                <field name="balance"/>
+                <field name="next_reset"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_wallet" model="ir.actions.act_window">
+        <field name="name">Credit Wallets</field>
+        <field name="res_model">isd.credit.wallet</field>
+        <field name="path">credit-wallets</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_overview" model="ir.actions.server">
+        <field name="name">Credit</field>
+        <field name="model_id" ref="model_isd_credit_wallet"/>
+        <field name="state">code</field>
+        <field name="path">credit</field>
+        <field name="groups_id" eval="[(4, ref('isd_credit_app.group_credit_user'))]"/>
+        <field name="code">action = model.action_open_overview()</field>
+    </record>
+</odoo>

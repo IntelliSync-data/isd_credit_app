@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.isd_credit_app</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Credit" string="Credit" name="isd_credit_app"
+                     groups="isd_credit_app.group_credit_vendor">
+                    <block title="Wallet" name="isd_credit_wallet">
+                        <setting string="Credit Wallets" help="Change it before any credit is used">
+                            <field name="isd_credit_wallet_scope" widget="radio"/>
+                        </setting>
+                        <setting string="Time Zone" help="Periods, limits and the daily notice follow this day">
+                            <field name="isd_credit_timezone"/>
+                        </setting>
+                    </block>
+                    <block title="Notice" name="isd_credit_notice">
+                        <setting string="Warn Below" help="Everyone sees a notice, and managers get an email, at or below this credit">
+                            <field name="isd_credit_warning_threshold"/>
+                        </setting>
+                    </block>
+                    <block title="Top-ups" name="isd_credit_topup">
+                        <setting string="Price per Credit" help="For a top-up of any number of credits, outside the packages">
+                            <div class="row">
+                                <label for="isd_credit_price_vnd" string="VND" class="col-3 o_light_label"/>
+                                <field name="isd_credit_price_vnd" class="col-6"/>
+                            </div>
+                            <div class="row">
+                                <label for="isd_credit_price_usd" string="USD" class="col-3 o_light_label"/>
+                                <field name="isd_credit_price_usd" class="col-6"/>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="path">credit-settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'isd_credit_app', 'bin_size': False}</field>
+    </record>
+</odoo>

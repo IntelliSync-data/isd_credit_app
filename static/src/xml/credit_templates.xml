@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="isd_credit_app.CreditNoticeDialog">
+        <Dialog title="title" size="'md'">
+            <div class="d-flex align-items-start gap-3">
+                <i t-attf-class="fa fa-2x {{ props.notice.level === 'empty' ? 'fa-ban text-danger' : 'fa-exclamation-triangle text-warning' }}"/>
+                <div>
+                    <p t-if="props.notice.level === 'empty'" class="mb-2">
+                        The system has run out of credit. Actions that cost credit are blocked.
+                    </p>
+                    <p t-else="" class="mb-2">
+                        The system has <strong t-esc="props.notice.balance.toLocaleString()"/> credits left.
+                        Please ask your manager to top up.
+                    </p>
+                </div>
+            </div>
+            <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="isd_credit_hide_today"
+                       t-model="state.hideToday"/>
+                <label class="form-check-label" for="isd_credit_hide_today">Don't show again today</label>
+            </div>
+            <t t-set-slot="footer">
+                <button t-if="props.notice.can_request" class="btn btn-primary" t-on-click="() => this.finish(true)">
+                    Request Top-up
+                </button>
+                <button class="btn btn-secondary" t-on-click="() => this.finish()">Close</button>
+            </t>
+        </Dialog>
+    </t>
+
+    <t t-name="isd_credit_app.CreditSystray">
+        <div t-if="state.status" class="o_isd_credit_systray">
+            <Dropdown position="'bottom-end'" onOpened.bind="load">
+                <button class="d-flex align-items-center gap-1" title="Credit">
+                    <i t-attf-class="fa fa-database {{ level }}"/>
+                    <span t-attf-class="small fw-bold {{ level }}" t-esc="format(state.status.balance)"/>
+                </button>
+                <t t-set-slot="content">
+                    <div class="px-3 py-2" style="min-width: 260px;">
+                        <div class="d-flex justify-content-between">
+                            <span>Credit left</span><strong t-esc="format(state.status.balance)"/>
+                        </div>
+                        <div class="d-flex justify-content-between small text-muted">
+                            <span>System</span><span t-esc="format(state.status.system_balance)"/>
+                        </div>
+                        <div class="d-flex justify-content-between small text-muted">
+                            <span>Purchased</span><span t-esc="format(state.status.topup_balance)"/>
+                        </div>
+                        <hr class="my-2"/>
+                        <div class="d-flex justify-content-between">
+                            <span>I used this month</span><span t-esc="format(state.status.used_month)"/>
+                        </div>
+                        <t t-foreach="state.status.limits" t-as="limit" t-key="limit_index">
+                            <div t-if="limit.mode === 'forbid'" class="small text-danger">
+                                You are not allowed to use charged actions.
+                            </div>
+                            <div t-else="" class="d-flex justify-content-between small">
+                                <span>My limit (<t t-esc="limit.period"/>)</span>
+                                <span><t t-esc="format(limit.used)"/> / <t t-esc="format(limit.max)"/></span>
+                            </div>
+                        </t>
+                    </div>
+                    <DropdownItem onSelected="() => this.open('isd_credit_app.action_price_list')">Price List</DropdownItem>
+                    <DropdownItem onSelected="() => this.open('isd_credit_app.action_my_usage')">My Usage</DropdownItem>
+                    <DropdownItem t-if="state.status.is_manager" onSelected="() => this.open('isd_credit_app.action_topup_new')">
+                        Request Top-up
+                    </DropdownItem>
+                </t>
+            </Dropdown>
+        </div>
+    </t>
+
+    <t t-inherit="web.FormView" t-inherit-mode="extension">
+        <xpath expr="//Layout/t[@t-component='props.Renderer']" position="before">
+            <div t-if="creditCost" class="o_isd_credit_hint alert alert-info py-1 px-3 mb-0 rounded-0 small">
+                <i class="fa fa-database me-1"/>
+                <t t-if="model.root.isNew">Creating this record costs <strong t-esc="creditCost"/> credits.</t>
+                <t t-else="">Saving changes to this record costs <strong t-esc="creditCost"/> credits.</t>
+            </div>
+        </xpath>
+    </t>
+</templates>

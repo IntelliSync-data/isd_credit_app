@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_credit_topup" model="ir.sequence">
+        <field name="name">Credit Top-up</field>
+        <field name="code">isd.credit.topup</field>
+        <field name="prefix">TOP/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <!-- Packages are priced in VND or USD -->
+    <function model="res.currency" name="write">
+        <value eval="[ref('base.VND'), ref('base.USD')]"/>
+        <value eval="{'active': True}"/>
+    </function>
+</odoo>
