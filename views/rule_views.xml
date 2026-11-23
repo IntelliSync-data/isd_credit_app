@@ -38,7 +38,13 @@
                                    placeholder="e.g. ai_chatbot.ai_reply"/>
                         </group>
                         <group string="Price">
-                            <field name="credits"/>
+                            <label for="credits"/>
+                            <div class="o_row">
+                                <field name="credits" class="oe_inline"/>
+                                <span>credits per</span>
+                                <field name="per_qty" class="oe_inline"/>
+                                <span>times</span>
+                            </div>
                             <field name="sequence"/>
                             <field name="active" widget="boolean_toggle"/>
                         </group>
@@ -63,6 +69,7 @@
                 <field name="operation"/>
                 <field name="model_id" optional="show"/>
                 <field name="credits"/>
+                <field name="per_qty" optional="show"/>
                 <field name="description" optional="hide"/>
                 <field name="active" widget="boolean_toggle" groups="isd_credit_app.group_credit_vendor"/>
             </list>
@@ -81,6 +88,7 @@
                 <field name="operation"/>
                 <field name="model_id" optional="hide"/>
                 <field name="credits"/>
+                <field name="per_qty"/>
                 <field name="description"/>
             </list>
         </field>

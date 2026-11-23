@@ -49,6 +49,8 @@ class CreditRule(models.Model):
                                 domain="[('id', 'in', allowed_report_ids)]")
     action_code = fields.Char(string='Action Code', help="The code a module charges with, e.g. ai_chatbot.ai_reply")
     credits = fields.Integer(required=True, default=1, help='0 tracks the action without charging for it')
+    per_qty = fields.Integer(string='Per', required=True, default=1,
+                             help='Charge the credits once every this many actions, e.g. 1 credit per 50 messages')
     domain = fields.Char(string='Only When', help='Charge only records that match this filter')
     description = fields.Text(translate=True)
 
@@ -112,11 +114,13 @@ class CreditRule(models.Model):
             self.model_id = False
 
     @api.constrains('operation', 'model_id', 'button_name', 'server_action_id', 'report_id', 'action_code',
-                    'credits', 'domain')
+                    'credits', 'domain', 'per_qty')
     def _check_target(self):
         for rule in self:
             if rule.credits < 0:
                 raise ValidationError(_('A price cannot be negative.'))
+            if rule.per_qty < 1:
+                raise ValidationError(_('"Per" is at least 1.'))
             op = rule.operation
             if op in ('create', 'write', 'unlink', 'button') and not rule.model_id:
                 raise ValidationError(_('"%s": choose the model.', rule.name))
@@ -142,12 +146,13 @@ class CreditRule(models.Model):
 
         {'crud': {model: {operation: (...)}}, 'button': {(model, method): (...)},
          'server_action': {action_id: (...)}, 'report': {report_id: (...)}, 'named': {code: (...)}}
-        where each entry is (rule_id, credits, domain, field_names).
+        where each entry is (rule_id, credits, domain, field_names, per_qty).
         """
         index = {'crud': defaultdict(lambda: defaultdict(list)), 'button': defaultdict(list),
                  'server_action': defaultdict(list), 'report': defaultdict(list), 'named': defaultdict(list)}
         for rule in self.sudo().search([]):
-            entry = (rule.id, rule.credits, rule.domain or False, tuple(rule.write_field_ids.mapped('name')))
+            entry = (rule.id, rule.credits, rule.domain or False, tuple(rule.write_field_ids.mapped('name')),
+                     rule.per_qty or 1)
             if rule.operation in ('create', 'write', 'unlink'):
                 index['crud'][rule.model][rule.operation].append(entry)
             elif rule.operation == 'button':
@@ -188,7 +193,7 @@ class CreditRule(models.Model):
     def _charge(self, entries, records, qty=None, label=None):
         """Charge each priced entry for the records it applies to, wallet by wallet."""
         Wallet = self.env['isd.credit.wallet']
-        for rule_id, credits, domain, _fields in entries:
+        for rule_id, credits, domain, _fields, per in entries:
             if not credits:
                 continue
             rule = self.sudo().browse(rule_id)
@@ -200,9 +205,13 @@ class CreditRule(models.Model):
             for company, group in self._by_company(matched):
                 count = qty if qty is not None else max(len(group), 1)
                 text = label or rule.name
+                wallet = Wallet._get_wallet(company)
+                if per > 1:
+                    wallet._spend_batched(rule, credits, per, count, group, text)
+                    continue
                 if count > 1:
                     text = '%s × %s' % (text, count)
-                Wallet._get_wallet(company)._spend(credits * count, text, rule=rule, records=group, qty=count)
+                wallet._spend(credits * count, text, rule=rule, records=group, qty=count)
 
     @api.model
     def _by_company(self, records):
@@ -254,9 +263,12 @@ class CreditRule(models.Model):
 
     @api.model
     def get_form_hint(self, model):
-        """What saving a record of `model` costs: {'create': n, 'write': n}, or False."""
+        """What saving a record of `model` costs, as text: {'create': '2', 'write': '1 / 50'}, or False."""
         if model not in self.env or self.env['isd.credit.wallet']._exempt():
             return False
         ops = self._index()['crud'].get(model, {})
-        costs = {op: sum(e[1] for e in ops.get(op, ())) for op in ('create', 'write')}
+        costs = {}
+        for op in ('create', 'write'):
+            parts = ['%s / %s' % (e[1], e[4]) if e[4] > 1 else str(e[1]) for e in ops.get(op, ()) if e[1]]
+            costs[op] = ' + '.join(parts) if parts else False
         return costs if any(costs.values()) else False

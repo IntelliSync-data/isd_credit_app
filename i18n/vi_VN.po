@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-21 05:46+0000\n"
-"PO-Revision-Date: 2026-11-21 05:46+0000\n"
+"POT-Creation-Date: 2026-11-23 01:45+0000\n"
+"PO-Revision-Date: 2026-11-23 01:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -53,6 +53,12 @@ msgstr "\"%s\": điều kiện lọc không hợp lệ."
 
 #. module: isd_credit_app
 #. odoo-python
+#: code:addons/isd_credit_app/models/rule.py:0
+msgid "\"Per\" is at least 1."
+msgstr "\"Mỗi\" phải từ 1 trở lên."
+
+#. module: isd_credit_app
+#. odoo-python
 #: code:addons/isd_credit_app/models/topup.py:0
 msgid "%(credits)s credits, %(amount)s %(currency)s in cash"
 msgstr "%(credits)s credit, %(amount)s %(currency)s tiền mặt"
@@ -68,6 +74,12 @@ msgstr "%(who)s: %(max)s credit mỗi %(period)s"
 #: code:addons/isd_credit_app/models/limit.py:0
 msgid "%s: no charged actions"
 msgstr "%s: không được dùng thao tác tính credit"
+
+#. module: isd_credit_app
+#. odoo-javascript
+#: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
+msgid "(credits / number of times)"
+msgstr "(credit / số lần)"
 
 #. module: isd_credit_app
 #: model:ir.model.fields,help:isd_credit_app.field_isd_credit_rule__credits
@@ -107,6 +119,16 @@ msgstr ""
 "    <p>Các thao tác có tính credit bị chặn cho đến khi được nạp thêm.</p>\n"
 "</div>\n"
 "        "
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_form
+msgid "<span>credits per</span>"
+msgstr "<span>credit mỗi</span>"
+
+#. module: isd_credit_app
+#: model_terms:ir.ui.view,arch_db:isd_credit_app.view_rule_form
+msgid "<span>times</span>"
+msgstr "<span>lần</span>"
 
 #. module: isd_credit_app
 #: model:ir.model.constraint,message:isd_credit_app.constraint_isd_credit_wallet_company_unique
@@ -360,11 +382,19 @@ msgid "Charge only records that match this filter"
 msgstr "Chỉ tính các bản ghi thoả điều kiện này"
 
 #. module: isd_credit_app
+#: model:ir.model.fields,help:isd_credit_app.field_isd_credit_rule__per_qty
+msgid ""
+"Charge the credits once every this many actions, e.g. 1 credit per 50 "
+"messages"
+msgstr "Trừ số credit này sau mỗi chừng ấy lần thao tác, ví dụ 1 credit mỗi 50 tin nhắn"
+
+#. module: isd_credit_app
 #: model_terms:ir.actions.act_window,help:isd_credit_app.action_topup
 msgid ""
 "Choose a package or a number of credits, then send the request. Credit is "
 "added once ISD approves it."
-msgstr "Chọn gói hoặc số credit rồi gửi yêu cầu. Credit được cộng khi ISD duyệt."
+msgstr ""
+"Chọn gói hoặc số credit rồi gửi yêu cầu. Credit được cộng khi ISD duyệt."
 
 #. module: isd_credit_app
 #. odoo-javascript
@@ -396,12 +426,18 @@ msgid "Contract Ends"
 msgstr "Hợp đồng hết hạn"
 
 #. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_counter__count
+msgid "Count"
+msgstr "Số lần"
+
+#. module: isd_credit_app
 #: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_rule__operation__create
 msgid "Create"
 msgstr "Tạo"
 
 #. module: isd_credit_app
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__create_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_counter__create_uid
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__create_uid
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__create_uid
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__create_uid
@@ -413,6 +449,7 @@ msgstr "Tạo bởi"
 
 #. module: isd_credit_app
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__create_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_counter__create_date
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__create_date
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__create_date
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__create_date
@@ -439,6 +476,11 @@ msgstr "Tạo bản ghi này tốn"
 #: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
 msgid "Credit"
 msgstr "Credit"
+
+#. module: isd_credit_app
+#: model:ir.model,name:isd_credit_app.model_isd_credit_counter
+msgid "Credit Counter"
+msgstr "Bộ đếm credit"
 
 #. module: isd_credit_app
 #: model:ir.model,name:isd_credit_app.model_isd_credit_ledger
@@ -649,6 +691,7 @@ msgstr "Nhãn hiển thị"
 
 #. module: isd_credit_app
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__display_name
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_counter__display_name
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__display_name
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__display_name
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__display_name
@@ -683,7 +726,8 @@ msgstr "Sửa"
 #: model:ir.model.fields,help:isd_credit_app.field_isd_credit_rule__write_field_ids
 msgid ""
 "Edits count only when one of these fields changes. Empty: any edit counts."
-msgstr "Chỉ tính khi sửa một trong các trường này. Để trống: sửa gì cũng tính."
+msgstr ""
+"Chỉ tính khi sửa một trong các trường này. Để trống: sửa gì cũng tính."
 
 #. module: isd_credit_app
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__user_id
@@ -731,7 +775,9 @@ msgstr "Mọi người thấy thông báo khi credit còn bằng hoặc dưới 
 #: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
 msgid ""
 "Everyone sees a notice, and managers get an email, at or below this credit"
-msgstr "Khi credit bằng hoặc dưới mức này, mọi người thấy thông báo và quản lý nhận email"
+msgstr ""
+"Khi credit bằng hoặc dưới mức này, mọi người thấy thông báo và quản lý nhận "
+"email"
 
 #. module: isd_credit_app
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__message_follower_ids
@@ -785,6 +831,7 @@ msgstr "Tôi đã dùng tháng này"
 
 #. module: isd_credit_app
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_counter__id
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__id
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__id
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__id
@@ -845,6 +892,7 @@ msgstr "Loại"
 
 #. module: isd_credit_app
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__write_uid
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_counter__write_uid
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__write_uid
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__write_uid
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__write_uid
@@ -856,6 +904,7 @@ msgstr "Cập nhật lần cuối bởi"
 
 #. module: isd_credit_app
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__write_date
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_counter__write_date
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__write_date
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__write_date
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_package__write_date
@@ -1051,7 +1100,9 @@ msgstr "Chưa giới hạn ai"
 msgid ""
 "Not enough credit: this needs %(need)s credits and the system has %(left)s "
 "left. Please ask your manager to top up."
-msgstr "Không đủ credit: thao tác này cần %(need)s credit, hệ thống còn %(left)s. Liên hệ quản lý để nạp thêm."
+msgstr ""
+"Không đủ credit: thao tác này cần %(need)s credit, hệ thống còn %(left)s. "
+"Liên hệ quản lý để nạp thêm."
 
 #. module: isd_credit_app
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_topup__note
@@ -1096,6 +1147,11 @@ msgstr "Số tin nhắn gửi lỗi"
 #: model:ir.model.fields.selection,name:isd_credit_app.selection__isd_credit_wallet__period__once
 msgid "Once (no period)"
 msgstr "Một lần (không có kỳ)"
+
+#. module: isd_credit_app
+#: model:ir.model.constraint,message:isd_credit_app.constraint_isd_credit_counter_wallet_rule_unique
+msgid "One counter per wallet and price."
+msgstr "Mỗi ví và mỗi dòng giá chỉ có một bộ đếm."
 
 #. module: isd_credit_app
 #: model:ir.model.fields.selection,name:isd_credit_app.selection__res_config_settings__isd_credit_wallet_scope__database
@@ -1216,6 +1272,11 @@ msgid "Payment Method"
 msgstr "Phương thức thanh toán"
 
 #. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_rule__per_qty
+msgid "Per"
+msgstr "Mỗi"
+
+#. module: isd_credit_app
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_limit__period
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_wallet__period
 msgid "Period"
@@ -1226,7 +1287,9 @@ msgstr "Chu kỳ"
 msgid ""
 "Periods, limits and \"Don't show again today\" follow the customer's day in "
 "this zone"
-msgstr "Kỳ, giới hạn và \"Không hiện lại hôm nay\" tính theo ngày của khách ở múi giờ này"
+msgstr ""
+"Kỳ, giới hạn và \"Không hiện lại hôm nay\" tính theo ngày của khách ở múi "
+"giờ này"
 
 #. module: isd_credit_app
 #: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
@@ -1434,6 +1497,11 @@ msgid "Responsible User"
 msgstr "Người phụ trách"
 
 #. module: isd_credit_app
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_counter__rule_id
+msgid "Rule"
+msgstr "Dòng giá"
+
+#. module: isd_credit_app
 #. odoo-javascript
 #: code:addons/isd_credit_app/static/src/xml/credit_templates.xml:0
 msgid "Saving changes to this record costs"
@@ -1442,7 +1510,8 @@ msgstr "Lưu thay đổi bản ghi này tốn"
 #. module: isd_credit_app
 #: model:res.groups,comment:isd_credit_app.group_credit_manager
 msgid "Sees the balance and all usage, limits staff, and requests top-ups."
-msgstr "Xem số dư và toàn bộ lịch sử dùng, giới hạn nhân viên, gửi yêu cầu nạp."
+msgstr ""
+"Xem số dư và toàn bộ lịch sử dùng, giới hạn nhân viên, gửi yêu cầu nạp."
 
 #. module: isd_credit_app
 #: model:res.groups,comment:isd_credit_app.group_credit_user
@@ -1484,7 +1553,9 @@ msgstr "Hãy đưa yêu cầu về nháp để sửa."
 msgid ""
 "Sets plans, prices and packages, approves top-ups, adjusts credit. Its users"
 " are never charged."
-msgstr "Cấu hình gói, bảng giá, gói nạp; duyệt nạp; điều chỉnh credit. User nhóm này không bị tính credit."
+msgstr ""
+"Cấu hình gói, bảng giá, gói nạp; duyệt nạp; điều chỉnh credit. User nhóm này"
+" không bị tính credit."
 
 #. module: isd_credit_app
 #: model:ir.actions.act_window,name:isd_credit_app.action_settings
@@ -1717,6 +1788,7 @@ msgstr "VND"
 
 #. module: isd_credit_app
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_adjust_wizard__wallet_id
+#: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_counter__wallet_id
 #: model:ir.model.fields,field_description:isd_credit_app.field_isd_credit_ledger__wallet_id
 #: model_terms:ir.ui.view,arch_db:isd_credit_app.res_config_settings_view_form
 msgid "Wallet"
@@ -1759,7 +1831,8 @@ msgstr "Với \"Cộng dồn\", credit hệ thống không vượt mức này. 0
 #: model:ir.model.fields,help:isd_credit_app.field_isd_credit_limit__company_id
 msgid ""
 "With one wallet per company: the company the limit applies in. Empty: all."
-msgstr "Khi mỗi công ty một ví: công ty áp dụng giới hạn. Để trống: mọi công ty."
+msgstr ""
+"Khi mỗi công ty một ví: công ty áp dụng giới hạn. Để trống: mọi công ty."
 
 #. module: isd_credit_app
 #. odoo-python
@@ -1791,7 +1864,9 @@ msgstr "Bạn không được dùng các thao tác có tính credit. Liên hệ 
 msgid ""
 "You have used %(used)s/%(max)s credits this %(period)s; this needs %(need)s "
 "more. Please contact your manager."
-msgstr "Bạn đã dùng %(used)s/%(max)s credit trong %(period)s này; thao tác cần thêm %(need)s. Liên hệ quản lý."
+msgstr ""
+"Bạn đã dùng %(used)s/%(max)s credit trong %(period)s này; thao tác cần thêm "
+"%(need)s. Liên hệ quản lý."
 
 #. module: isd_credit_app
 #. odoo-python

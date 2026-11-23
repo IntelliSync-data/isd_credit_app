@@ -21,8 +21,8 @@ patch(FormController.prototype, {
 
     get creditCost() {
         if (!this.creditHint) {
-            return 0;
+            return "";
         }
-        return this.model.root.isNew ? this.creditHint.create : this.creditHint.write;
+        return (this.model.root.isNew ? this.creditHint.create : this.creditHint.write) || "";
     },
 });

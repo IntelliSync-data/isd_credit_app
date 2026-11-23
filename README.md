@@ -52,6 +52,7 @@ Mỗi dòng gồm module, loại thao tác, đối tượng và số credit.
 | **Named Action** | Module tự gọi trong code | Xem phần dành cho lập trình viên |
 
 - **Only When**: chỉ tính bản ghi thoả điều kiện (ví dụ loại = vCard).
+- **Credits … per … times**: tính gộp, ví dụ **1 credit mỗi 50 lần** (gửi 50 tin nhắn mới trừ 1 credit). Module đếm số lần cho từng ví; đủ 50 thì trừ và ghi một dòng sổ "× 50". Ví không còn đủ cho một lần trừ thì chặn luôn, kể cả lần chưa đủ 50.
 - Giá **0**: chỉ để biết, không tính. Tắt **Active** để tạm dừng.
 - Đổi giá không ảnh hưởng những gì đã tính. Xoá bản ghi không hoàn credit; cần thì dùng **Adjust Credit**.
 
@@ -113,7 +114,7 @@ odoo-bin -c odoo.conf -d <db> --db-filter='^<db>$' -i isd_credit_app \
   --test-enable --test-tags=/isd_credit_app --stop-after-init
 ```
 
-30 test: thứ tự trừ, reset / cộng dồn / không reset / hết hợp đồng, cron, chặn khi hết kể cả theo lô, hoàn credit khi lỗi, đủ 7 loại thao tác, thông báo và "không hiện lại hôm nay", email một lần, giới hạn nhân viên và nhóm, ví theo công ty, nạp VND/USD, khách không tự cộng credit hay tự duyệt, sổ không sửa được, khoá dòng ví, và 2 test trình duyệt (hộp thông báo, systray, dòng giá trên form).
+33 test: thứ tự trừ, giá theo N lần, reset / cộng dồn / không reset / hết hợp đồng, cron, chặn khi hết kể cả theo lô, hoàn credit khi lỗi, đủ 7 loại thao tác, thông báo và "không hiện lại hôm nay", email một lần, giới hạn nhân viên và nhóm, ví theo công ty, nạp VND/USD, khách không tự cộng credit hay tự duyệt, sổ không sửa được, khoá dòng ví, và 2 test trình duyệt (hộp thông báo, systray, dòng giá trên form).
 
 ## Chưa làm
 

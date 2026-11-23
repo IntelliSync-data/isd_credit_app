@@ -171,6 +171,34 @@ class TestCredit(TransactionCase):
         self.Wallet.with_user(self.employee).consume('test.unpriced')
         self.assertEqual(self.wallet.balance, 2)
 
+    def test_credits_per_n_actions(self):
+        self._set_balance(system=3)
+        self._price('create', 1, per_qty=3)
+        Partner = self._as(self.employee, 'res.partner')
+        Partner.create([{'name': 'P1'}, {'name': 'P2'}])
+        self.assertEqual(self.wallet.balance, 3, 'nothing charged before the third')
+        Partner.create({'name': 'P3'})
+        self.assertEqual(self.wallet.balance, 2)
+        line = self.env['isd.credit.ledger'].search([('kind', '=', 'consume')], limit=1)
+        self.assertEqual((line.credits, line.qty), (-1, 3))
+        Partner.create([{'name': 'P%s' % i} for i in range(4, 11)])  # 7 more: 2 charges, 1 left over
+        self.assertEqual(self.wallet.balance, 0)
+        counter = self.env['isd.credit.counter'].search([])
+        self.assertEqual(counter.count, 1)
+
+    def test_credits_per_n_blocks_when_empty(self):
+        self._set_balance(system=0)
+        self._price('create', 1, per_qty=50)
+        with self.assertRaisesRegex(UserError, 'Not enough credit'):
+            self._as(self.employee, 'res.partner').create({'name': 'blocked'})
+
+    def test_named_action_per_n(self):
+        self._set_balance(system=5)
+        self._price('named', 1, action_code='test.msg', per_qty=2)
+        for _i in range(5):
+            self.Wallet.with_user(self.employee).consume('test.msg')
+        self.assertEqual(self.wallet.balance, 3)
+
     def test_price_change_clears_cache(self):
         self._set_balance(system=10)
         rule = self._price('create', 1)
@@ -184,7 +212,7 @@ class TestCredit(TransactionCase):
     def test_form_hint(self):
         self._price('create', 2)
         self._price('write', 1)
-        self.assertEqual(self.Rule.with_user(self.employee).get_form_hint('res.partner'), {'create': 2, 'write': 1})
+        self.assertEqual(self.Rule.with_user(self.employee).get_form_hint('res.partner'), {'create': '2', 'write': '1'})
         self.assertFalse(self.Rule.with_user(self.employee).get_form_hint('res.country'))
 
     def test_module_choice_excludes_this_module(self):

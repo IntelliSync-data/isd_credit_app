@@ -2,6 +2,7 @@
 from . import wallet
 from . import rule
 from . import ledger
+from . import counter
 from . import limit
 from . import package
 from . import topup

@@ -11,3 +11,4 @@ access_package_vendor,package vendor,model_isd_credit_package,group_credit_vendo
 access_topup_manager,topup manager,model_isd_credit_topup,group_credit_manager,1,1,1,0
 access_topup_vendor,topup vendor,model_isd_credit_topup,group_credit_vendor,1,1,1,1
 access_adjust_wizard_vendor,adjust wizard vendor,model_isd_credit_adjust_wizard,group_credit_vendor,1,1,1,1
+access_counter_vendor,counter vendor,model_isd_credit_counter,group_credit_vendor,1,0,0,0

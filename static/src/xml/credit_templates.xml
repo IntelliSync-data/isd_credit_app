@@ -77,6 +77,7 @@
                 <i class="fa fa-database me-1"/>
                 <t t-if="model.root.isNew">Creating this record costs <strong t-esc="creditCost"/> credits.</t>
                 <t t-else="">Saving changes to this record costs <strong t-esc="creditCost"/> credits.</t>
+                <span t-if="creditCost.includes('/')" class="text-muted"> (credits / number of times)</span>
             </div>
         </xpath>
     </t>

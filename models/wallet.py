@@ -215,6 +215,27 @@ class CreditWallet(models.Model):
         self._check_thresholds()
         return line
 
+    def _spend_batched(self, rule, credits, per, count, records, description):
+        """Count `count` more actions of a "credits per N" price; charge for each full N.
+
+        Out of credit still blocks every action, not only the one that completes a batch.
+        """
+        self.ensure_one()
+        self._lock()
+        Counter = self.env['isd.credit.counter'].sudo()
+        counter = Counter.search([('wallet_id', '=', self.id), ('rule_id', '=', rule.id)], limit=1)
+        if not counter:
+            counter = Counter.create({'wallet_id': self.id, 'rule_id': rule.id})
+        charges, rest = divmod(counter.count + count, per)
+        if charges:
+            self._spend(credits * charges, '%s × %s' % (description, charges * per),
+                        rule=rule, records=records, qty=charges * per)
+        elif self.balance < credits:
+            raise UserError(_(
+                'Not enough credit: this needs %(need)s credits and the system has %(left)s left. '
+                'Please ask your manager to top up.', need=credits, left=max(self.balance, 0)))
+        counter.count = rest
+
     def _add(self, kind, system=0, topup=0, description='', user=None, topup_id=None):
         """Grant system credit and/or add purchased credit, with a ledger line."""
         self.ensure_one()
@@ -340,10 +361,11 @@ class CreditWallet(models.Model):
         if self._exempt():
             return False
         Rule = self.env['isd.credit.rule']
-        for rule_id, credits, _domain, _fields in Rule._index().get('named', {}).get(code, ()):
-            rule = Rule.sudo().browse(rule_id)
-            company = record.company_id if record is not None and 'company_id' in record._fields and record.company_id else None
-            self._get_wallet(company)._spend(credits * qty, rule.name, rule=rule, records=record, qty=qty)
+        entries = Rule._index().get('named', {}).get(code, ())
+        if entries:
+            # The record only picks the company's wallet: a named action has no filter
+            entries = tuple((e[0], e[1], False, e[3], e[4]) for e in entries)
+            Rule._charge(entries, record if record else None, qty=qty)
         return True
 
     @api.model

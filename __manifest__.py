@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Credit (by ISD)',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.1.0',
     'category': 'ISD Modules',
     'summary': 'Charge the system in credits: a credit allowance per period, a price per action, '
                'top-up requests, per-user limits and low-credit warnings',
